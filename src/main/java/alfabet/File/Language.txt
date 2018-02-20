@@ -1,0 +1,11 @@
+﻿Empty=line
+scare=бояться,крик
+favor=характеристика,особенность
+entrance=вход
+light=легкий,свет
+небо=sky,heaven
+красивый=beauty,pretty
+вкусный=tasty
+дорога=road,way,highway
+свежий=fresh,raw
+run=бежать,двигаться,перемещаться
