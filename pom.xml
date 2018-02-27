@@ -3,9 +3,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>homeWork</groupId>
     <artifactId>1_1</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <build>
         <plugins>
@@ -19,6 +19,8 @@
             </plugin>
         </plugins>
     </build>
-
-
+    <modules>
+        <module>home_work_2</module>
+        <module>home_work_3</module>
+    </modules>
 </project>

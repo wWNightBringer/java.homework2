@@ -1,4 +1,4 @@
-package alfabet;
+package dictionary;
 
 import java.io.IOException;
 import java.util.Scanner;
