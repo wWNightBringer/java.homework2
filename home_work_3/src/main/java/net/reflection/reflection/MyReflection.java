@@ -51,7 +51,7 @@ public class MyReflection extends Abstract{
         );
     }
     public static void main(String[] args) throws ClassNotFoundException {
-        Class<?> vClass=Class.forName("net.reflection.validation.ValidatorEngine");
+        Class<?> vClass=Class.forName("net.reflection.validation.ValidatorMax");
         new MyReflection().tellAbout(vClass);
     }
 }

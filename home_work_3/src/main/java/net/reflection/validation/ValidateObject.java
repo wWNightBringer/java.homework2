@@ -7,22 +7,22 @@ import net.reflection.validation.annotation.Size;
 
 public class ValidateObject {
     @Max
-            (value = "{10-1000}",
-                    message = "Too big number")
+            (value = "([1-5]{1})([0,4]{1,2})$",
+                    message = "too big number")
     @Min
-            (value = "{0-550}",
-                    message = "Too little number")
+            (value = "(.{2,5})$",
+                    message = "too little number")
     @NotNull
-            (value = "{1-3}",
+            (value = "(.+)$",
                     errorMessage = "PLS enter number")
     private String number;
     @Size
-            (min = "{10}",
-                    max = "{50}",
+            (min = ".{5,}$",
+                    max = ".{0,50}$",
                     message = "Incorrect number")
     @NotNull
-            (value = "{0-100}",
-                    errorMessage = "PLS enter number")
+            (value = "(.+)$",
+                    errorMessage = "PLS enter right number")
     private String line;
 
     public ValidateObject(String number, String line) {
