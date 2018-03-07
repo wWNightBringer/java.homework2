@@ -6,8 +6,10 @@ import java.util.Scanner;
 
 public class Executor implements Runnable {
     private final CommandMaper commandMap;
+    private String line;
     private final Socket socket;
-    private final String CHARSET="UTF-8";
+    private final String CHARSET = "UTF-8";
+
     public Executor(Socket socket) {
         this.socket = socket;
         this.commandMap = new CommandMaper();
@@ -16,13 +18,12 @@ public class Executor implements Runnable {
     @Override
     public void run() {
         try (Socket s = socket) {
-            Scanner scanner = new Scanner(s.getInputStream(),CHARSET);
-            PrintWriter writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream(),CHARSET), true);
+            Scanner scanner = new Scanner(s.getInputStream(), CHARSET);
+            PrintWriter writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream(), CHARSET), true);
             while (true) {
                 if (scanner.hasNextLine()) {
-                    String line = scanner.nextLine().trim();
+                    line = scanner.nextLine().trim();
                     System.out.println(line);
-
                     if ("exit".equalsIgnoreCase(line)) {
                         break;
                     }

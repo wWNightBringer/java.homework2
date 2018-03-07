@@ -5,7 +5,7 @@ import java.lang.annotation.*;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD,ElementType.METHOD})
-public @interface Max {
+public @interface Max  {
     String value() default "";
     String message() default "";
 }

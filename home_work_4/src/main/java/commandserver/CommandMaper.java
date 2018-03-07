@@ -9,11 +9,12 @@ public class CommandMaper {
 
     public CommandMaper() {
         this.map = new HashMap<>();
-        map.put("src", () -> new CommandSRC());
-        map.put("dir", () -> new CommandDir());
     }
 
     public Command parse(String line) throws IllegalAccessException {
+        map.put("cd", () -> new CommandCD(line));
+        map.put("ls", () -> new CommandLS());
+        map.put("hello",()->new CommandHello());
         Supplier<Command> supplier = map.get(line.toLowerCase());
         if (supplier == null) {
             throw new IllegalAccessException(line);

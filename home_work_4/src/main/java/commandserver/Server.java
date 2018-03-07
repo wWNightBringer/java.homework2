@@ -26,9 +26,4 @@ public class Server {
             e.printStackTrace();
         }
     }
-
-    public static void main(String[] args) throws IllegalAccessException {
-        Server server=new Server(8080);
-        server.start(100);
-    }
 }
