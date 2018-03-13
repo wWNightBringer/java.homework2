@@ -12,10 +12,11 @@ public class CommandMaper {
     }
 
     public Command parse(String line) throws IllegalAccessException {
-        map.put("cd", () -> new CommandCD(line));
-        map.put("ls", () -> new CommandLS());
-        map.put("hello",()->new CommandHello());
-        Supplier<Command> supplier = map.get(line.toLowerCase());
+        String[] strings = line.split(" ");
+        map.put("cd", () -> new CommandCD(strings[1]));
+        map.put("dir", () -> new CommandDir());
+        map.put("hello", () -> new CommandHello());
+        Supplier<Command> supplier = map.get(strings[0]);
         if (supplier == null) {
             throw new IllegalAccessException(line);
         }
