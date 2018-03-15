@@ -28,14 +28,6 @@ public class Server {
                 System.out.println("New client in queue " + port);
                 socket = serverSocket.accept();
                 System.out.println("Client was connected " + socket.isConnected());
-                try {
-                    lock.lock();
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } finally {
-                    lock.unlock();
-                }
                 poolExecutor.execute(new Executor(socket));
                 try {
                     poolExecutor.awaitTermination(3, TimeUnit.MINUTES);
