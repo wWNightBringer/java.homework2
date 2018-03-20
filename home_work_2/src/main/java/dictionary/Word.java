@@ -2,6 +2,10 @@ package dictionary;
 
 import java.util.List;
 
+/**
+Впринципе класс лишний
+Это лишнаяя абстракция, String и так может сожержать слово
+**/
 public class Word {
     private String word;
     public Word(String word) {
