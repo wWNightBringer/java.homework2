@@ -1,6 +1,3 @@
-/**
-package не должен начинаться с большой буквы, это не верно
-**/
 package net.reflection.validation.Interface;
 
 import java.lang.reflect.Field;

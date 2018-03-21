@@ -4,20 +4,19 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    private static ReadFile readFile;
+    private static DictionaryReader readFile;
 
-    /**
-    Программа должна быть User-Friendly
-    А тут получается мне нужно для каждого слова ее запускать 
-    Пользователи такой пользоваться не будут :)
-    Где цикл, с вопросом что перевести или выйти из программы?
-    **/
     public static void main(String[] args) throws IOException {
-        Scanner scanner=new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         String line;
-        System.out.println("Enter word for translate");
-        line=scanner.nextLine();
-        readFile=new ReadFile();
-        readFile.show(line);
+        readFile = new DictionaryReader();
+        while (true) {
+            System.out.println("Enter word for translate");
+            line = scanner.nextLine();
+            readFile.show(line);
+            if ("exit".equalsIgnoreCase(line))
+                break;
+        }
+
     }
 }
