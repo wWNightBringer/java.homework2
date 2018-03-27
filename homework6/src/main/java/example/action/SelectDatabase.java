@@ -1,7 +1,7 @@
 package example.action;
 
 import example.Person;
-import example.JSON.Serialization;
+import example.json.Serialization;
 import example.iinterface.DatabaseAction;
 
 import java.io.IOException;
@@ -20,6 +20,7 @@ public class SelectDatabase implements DatabaseAction {
     private List<Person> list;
     private static Serialization serialization;
     private int x;
+
     public SelectDatabase() {
         list = new ArrayList<>();
     }
@@ -28,7 +29,7 @@ public class SelectDatabase implements DatabaseAction {
     public void actionActivityDatabase(Connection connection) throws SQLException, IOException {
         try (Statement statement = connection.createStatement()) {
             while (flag) {
-                x=0;
+                x = 0;
                 set = null;
                 row = null;
                 Scanner in = new Scanner(System.in);
@@ -36,7 +37,7 @@ public class SelectDatabase implements DatabaseAction {
                 String emp = in.next().toLowerCase();
                 switch (emp) {
                     case "all":
-                        x=1;
+                        x = 1;
                         System.out.println("ID\tName\t\tAddress\t\tPhone\t\tNick");
                         set = statement.executeQuery("SELECT * FROM person,phone WHERE person.ID=phone.PersonID ORDER BY person.ID");
                         break;
@@ -66,7 +67,7 @@ public class SelectDatabase implements DatabaseAction {
                         System.out.println(set.getInt(1) + "\t" + set.getString("name") + "\t\t" +
                                 set.getString("Address") + "\t\t" +
                                 set.getString("phone") + "\t\t" + set.getString("Nick"));
-                        if(x==1){
+                        if (x == 1) {
                             list.add(new Person(set.getInt(1), set.getString("name"),
                                     set.getString("Address"), set.getInt(4), set.getString("Nick")));
                         }
