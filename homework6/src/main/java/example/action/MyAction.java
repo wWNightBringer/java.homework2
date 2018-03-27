@@ -30,11 +30,15 @@ public class MyAction {
         Scanner scanner = new Scanner(System.in);
         tableCreation = new TableCreation();
         tableCreation.actionActivityDatabase(connection);
+        selectDatabase = new SelectDatabase();
         while (true) {
-            System.out.println("Choose insert or select data or update data or delete: ");
+            System.out.println("Choose insert or update or select data or delete: ");
             String enter = scanner.nextLine().toLowerCase();
             if (!enter.equalsIgnoreCase("exit")) {
                 switch (enter) {
+                    case "select":
+                        selectDatabase.actionActivityDatabase(connection);
+                        break;
                     case "insert":
                         System.out.println("Enter id, name, address, phone: ");
                         id = Integer.parseInt(scanner.next().toLowerCase());
@@ -43,10 +47,6 @@ public class MyAction {
                         phone = Integer.parseInt(scanner.next().toLowerCase());
                         insertDatabase = new InsertDatabase(id, name, address, phone);
                         insertDatabase.actionActivityDatabase(connection);
-                        break;
-                    case "select":
-                        selectDatabase = new SelectDatabase();
-                        selectDatabase.actionActivityDatabase(connection);
                         break;
                     case "update":
                         updateDatabase = new UpdateDatabase();
@@ -58,8 +58,6 @@ public class MyAction {
                         break;
                     default:
                         break;
-
-
                 }
             } else
                 break;

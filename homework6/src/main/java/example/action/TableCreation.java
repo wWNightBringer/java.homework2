@@ -15,10 +15,15 @@ public class TableCreation implements DatabaseAction {
     public void actionActivityDatabase(Connection connection) throws SQLException {
         try (Statement statement = connection.createStatement()) {
             statement.execute("use test");
-            statement.execute("CREATE TABLE IF NOT EXISTS PERSON(ID int PRIMARY key," +
-                    "NAME VARCHAR (255),ADDRESS VARCHAR (20),phone int UNIQUE)");
-            statement.execute("CREATE TABLE IF NOT EXISTS PHONE(ID int PRIMARY key," +
-                    "Phone CHAR(20))");
+            statement.execute("CREATE TABLE IF NOT EXISTS PERSON(ID int," +
+                    "NAME VARCHAR (255)," +
+                    "ADDRESS VARCHAR (20)," +
+                    "phone int UNIQUE," +
+                    "PRIMARY KEY (ID))");
+            statement.execute("CREATE TABLE IF NOT EXISTS PHONE(ID int," +
+                    "Phone CHAR(20)," +
+                    "PRIMARY KEY (ID)," +
+                    "FOREIGN KEY (ID) REFERENCES PERSON(ID))");
 
         } catch (IllegalAccessError error) {
 
