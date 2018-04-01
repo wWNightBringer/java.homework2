@@ -1,21 +1,29 @@
+package homework.task7;
+
 import controller.EditController;
 import controller.MainController;
+import database.Connect;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.InMemoryJdbcRepository;
-import model.JdbcRecordRepository;
+import database.ReadingClients;
 
 import java.io.IOException;
 
-public class JdbcApplication extends Application {
-    private JdbcRecordRepository recordRepository = new InMemoryJdbcRepository();
+public class MainApplication extends Application {
+    private Connect connect;
+    private ReadingClients readingClients;
     private Stage stage;
     private MainController mainController;
     private EditController editController;
+
+    public MainApplication() {
+        readingClients = new ReadingClients();
+        connect = new Connect();
+    }
 
     public static void main(String[] args) {
         launch(args);
@@ -24,6 +32,7 @@ public class JdbcApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.stage = primaryStage;
+        readingClients.connect(connect.connectionToDatabase());
         initMainStage();
         initEditStage();
     }
@@ -32,8 +41,8 @@ public class JdbcApplication extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main.fxml"));
         Parent root = loader.load();
         mainController = loader.getController();
-      /*  mainController.setMainStage(stage);
-        mainController.setRecordRepository(recordRepository);*/
+        mainController.setMainStage(stage);
+        mainController.setRecordRepository(readingClients);
         Scene scene = new Scene(root, 640, 380, false);
         stage.setTitle("Inform database");
         stage.setScene(scene);

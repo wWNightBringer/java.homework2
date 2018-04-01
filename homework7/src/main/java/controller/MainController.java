@@ -10,29 +10,30 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.JdbcRecord;
-import model.JdbcRecordRepository;
+import database.ReadingClients;
+import model.ClientsRecord;
+import model.ClientsRecordRepository;
 
 import java.net.URL;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     private Stage mainStage;
     private EditController editController;
-    private JdbcRecordRepository recordRepository;
+    private ReadingClients recordRepository;
+    private ClientsRecordRepository record;
     @FXML
-    private TableView<JdbcRecord> tableView;
+    private TableView<ClientsRecord> tableView;
     @FXML
-    private TableColumn<JdbcRecord,Integer> id;
+    private TableColumn<ClientsRecord, Integer> id;
     @FXML
-    private TableColumn<JdbcRecord,String> name;
+    private TableColumn<ClientsRecord, String> name;
     @FXML
-    private TableColumn<JdbcRecord,String> address;
+    private TableColumn<ClientsRecord, String> address;
     @FXML
-    private TableColumn<JdbcRecord,Integer> phone;
+    private TableColumn<ClientsRecord, Integer> phone;
     @FXML
-    private TableColumn<JdbcRecord,String> nick;
+    private TableColumn<ClientsRecord, String> nick;
     @FXML
     private Button insert;
     @FXML
@@ -41,13 +42,15 @@ public class MainController implements Initializable {
     private Button delete;
     @FXML
     private Label number;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        id.setCellValueFactory(new PropertyValueFactory<JdbcRecord,Integer>("id"));
+        id.setCellValueFactory(new PropertyValueFactory<ClientsRecord,Integer>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         address.setCellValueFactory(new PropertyValueFactory<>("address"));
         phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         nick.setCellValueFactory(new PropertyValueFactory<>("nick"));
+
     }
 
     public void setMainStage(Stage mainStage) {
@@ -58,22 +61,17 @@ public class MainController implements Initializable {
         this.editController = editController;
     }
 
-    public void setRecordRepository(JdbcRecordRepository recordRepository) {
+    public void setRecordRepository(ReadingClients recordRepository) {
         this.recordRepository = recordRepository;
-        ObservableList<JdbcRecord> observableList=recordRepository.getAllPhone();
+        ObservableList<ClientsRecord> observableList = recordRepository.getObservableList();
         number.setText(String.valueOf(observableList.size()));
-        observableList.addListener(new ListChangeListener<JdbcRecord>() {
-            @Override
-            public void onChanged(Change<? extends JdbcRecord> c) {
-                number.setText(String.valueOf(c.getList().size()));
-            }
-        });
+        observableList.addListener((ListChangeListener<ClientsRecord>) c -> number.setText(String.valueOf(c.getList().size())));
+        tableView.setItems(observableList);
     }
+
     @FXML
-    public void insertData(){
-        JdbcRecord jdbcRecord=new JdbcRecord();
-        editController.edit(jdbcRecord);
-        recordRepository.insert(jdbcRecord);
+    public void insertData() {
+
     }
 
 }
