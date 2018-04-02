@@ -8,10 +8,10 @@ import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class EngineValidator implements Validator {
-    private boolean flag = false;
+    private int flag=0;
 
     @Override
-    public boolean validater(Object object) throws IllegalAccessException {
+    public int validater(Object object) throws IllegalAccessException {
         if (Objects.nonNull(object)) {
             Class vClass = object.getClass();
             Field[] field = vClass.getDeclaredFields();
@@ -38,7 +38,7 @@ public class EngineValidator implements Validator {
                     if (!regex.matcher((CharSequence) v).matches()) {
                         System.out.println(form.message());
                     } else {
-                        flag = true;
+                        flag++;
                     }
 
                 }

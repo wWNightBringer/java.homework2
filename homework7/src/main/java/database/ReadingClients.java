@@ -2,7 +2,7 @@ package database;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import database.interfaces.JdbcRepository;
+import database.interfaces.ClientsRepository;
 import model.ClientsRecord;
 
 import java.sql.Connection;
@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ReadingClients implements JdbcRepository {
+public class ReadingClients implements ClientsRepository {
     private ObservableList<ClientsRecord> observableList;
     private ResultSet resultSet;
 
@@ -21,7 +21,7 @@ public class ReadingClients implements JdbcRepository {
     @Override
     public void connect(Connection connection) {
         try (Statement statement = connection.createStatement()) {
-            resultSet = statement.executeQuery("SELECT * FROM test.person,test.phone WHERE person.ID=phone.PersonID");
+            resultSet = statement.executeQuery("SELECT * FROM test.person,test.phone WHERE person.ID=phone.PersonID GROUP BY person.ID");
             while (resultSet.next()) {
                 observableList.add(new ClientsRecord(resultSet.getInt(1), resultSet.getString("Name"),
                         resultSet.getString("Address"), resultSet.getInt(4), resultSet.getString("Nick")));

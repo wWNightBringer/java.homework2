@@ -10,10 +10,13 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import database.ReadingClients;
+import model.ClientsRecordRepository;
+import model.InMemoryClientsRepository;
 
 import java.io.IOException;
 
 public class MainApplication extends Application {
+    private ClientsRecordRepository recordRepository=new InMemoryClientsRepository();
     private Connect connect;
     private ReadingClients readingClients;
     private Stage stage;
@@ -57,11 +60,11 @@ public class MainApplication extends Application {
         editStage.setTitle("Editor");
         editStage.initModality(Modality.WINDOW_MODAL);
         editStage.initOwner(stage);
-       /* editController.setStage(editStage);*/
-        Scene scene = new Scene(parent);
-        editStage.setScene(scene);
         editController = loader.getController();
-      /*  mainController.setEditController(editController);*/
+        Scene scene = new Scene(parent);
+        editController.setEditStage(editStage);
+        editStage.setScene(scene);
+        mainController.setEditController(editController);
 
     }
 

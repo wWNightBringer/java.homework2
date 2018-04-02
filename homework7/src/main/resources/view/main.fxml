@@ -30,12 +30,12 @@
       </AnchorPane>
       <HBox prefHeight="27.0" prefWidth="600.0">
          <children>
-            <Button fx:id="insert" alignment="TOP_RIGHT" mnemonicParsing="false" onAction="#insertData" text="INSERT">
+            <Button fx:id="insert" alignment="TOP_RIGHT" mnemonicParsing="false" onAction="#handleAddPhoneRecord" text="INSERT">
                <font>
                   <Font name="Arial Italic" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="update" alignment="TOP_LEFT" mnemonicParsing="false" text="UPDATE">
+            <Button fx:id="update" alignment="TOP_LEFT" onAction="#handleUpdateClientsrecord" mnemonicParsing="false" text="UPDATE">
                <font>
                   <Font name="Arial Italic" size="14.0" />
                </font>
@@ -43,7 +43,7 @@
                   <Insets left="20.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="delete" alignment="TOP_LEFT" mnemonicParsing="false" text="DELETE">
+            <Button fx:id="delete" alignment="TOP_LEFT" onAction="#handleDeleteClientsRecord" mnemonicParsing="false" text="DELETE">
                <font>
                   <Font name="Arial Italic" size="14.0" />
                </font>
